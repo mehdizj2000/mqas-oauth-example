@@ -1,0 +1,4 @@
+server:
+  port: 8369
+  servlet:
+    context-path: /authorization

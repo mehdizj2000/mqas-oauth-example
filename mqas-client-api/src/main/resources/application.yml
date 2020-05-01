@@ -1,0 +1,10 @@
+logging:
+  level:
+    org.springframework: debug
+
+server:
+  port: 5859
+  servlet:
+    context-path: /client
+    
+    

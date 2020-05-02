@@ -8,8 +8,8 @@ import org.springframework.web.SpringServletContainerInitializer;
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class MqasClientApiApplication {
 
-    public static void main(String[] args) {
-	SpringApplication.run(MqasClientApiApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(MqasClientApiApplication.class, args);
+	}
 
 }

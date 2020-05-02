@@ -16,20 +16,20 @@ import org.springframework.data.solr.repository.config.EnableSolrRepositories;
 @EnableSolrRepositories
 public class AppSolrConfig {
 
-    @Bean
-    public SolrClient solrClient() {
-	Builder builder = new Builder(Arrays.asList("node01:2181", "node02:2181", "node03:2181"), Optional.empty());
-	return builder.build();
-    }
+	@Bean
+	public SolrClient solrClient() {
+		Builder builder = new Builder(Arrays.asList("node01:2181", "node02:2181", "node03:2181"), Optional.empty());
+		return builder.build();
+	}
 
-    @Bean
-    public SolrTemplate solrTemplate(SolrClient solrClient) {
-	return new SolrTemplate(solrClient);
-    }
+	@Bean
+	public SolrTemplate solrTemplate(SolrClient solrClient) {
+		return new SolrTemplate(solrClient);
+	}
 
-    @Bean
-    public Pageable pageable() {
-	return new SolrPageRequest(0, 10);
-    }
+	@Bean
+	public Pageable pageable() {
+		return new SolrPageRequest(0, 10);
+	}
 
 }

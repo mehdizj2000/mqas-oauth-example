@@ -12,13 +12,14 @@ import au.com.jaycar.client.dto.AddressInfo;
 @RestController
 public class ProxyController {
 
-    @Autowired
-    private OAuth2RestTemplate restTemplate;
-    
-    @GetMapping("/proxy/addressInfo")
-    public List<AddressInfo> getAddressInfo(){
-	List<AddressInfo> infos = restTemplate.getForObject("http://127.0.0.1:7859/resource/api/getAddress/55,gym", List.class);
-	return infos;
-    }
-    
+	@Autowired
+	private OAuth2RestTemplate restTemplate;
+
+	@GetMapping("/proxy/addressInfo")
+	public List<AddressInfo> getAddressInfo() {
+		List<AddressInfo> infos = restTemplate.getForObject("http://127.0.0.1:7859/resource/api/getAddress/55,gym",
+				List.class);
+		return infos;
+	}
+
 }

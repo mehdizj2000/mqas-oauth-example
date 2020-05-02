@@ -6,10 +6,10 @@ import org.springframework.security.oauth2.provider.ClientRegistrationException;
 
 public class MyClientDetailsService implements ClientDetailsService {
 
-    @Override
-    public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
-	// TODO Auto-generated method stub
-	return null;
-    }
+	@Override
+	public ClientDetails loadClientByClientId(String clientId) throws ClientRegistrationException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -22,17 +22,17 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @EnableAuthorizationServer
 public class MqasAuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-	super.configure(security);
-	security.checkTokenAccess("permitAll()");
-    }
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+		super.configure(security);
+		security.checkTokenAccess("permitAll()");
+	}
 
-    @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+	@Override
+	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 	// @formatter:off
 	clients
 		.inMemory()
@@ -44,16 +44,16 @@ public class MqasAuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
 	;
 	// @formatter:on
-    }
+	}
 
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
- 	endpoints.tokenStore(tokenStore());
-    }
+	@Override
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		endpoints.tokenStore(tokenStore());
+	}
 
-    @Bean
-    public TokenStore tokenStore() {
-	return new InMemoryTokenStore();
-    }
+	@Bean
+	public TokenStore tokenStore() {
+		return new InMemoryTokenStore();
+	}
 
 }

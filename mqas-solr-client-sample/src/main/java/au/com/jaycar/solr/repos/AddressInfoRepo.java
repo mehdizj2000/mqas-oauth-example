@@ -9,10 +9,10 @@ import au.com.jaycar.solr.domain.AddressInfo;
 
 public interface AddressInfoRepo extends SolrCrudRepository<AddressInfo, String> {
 
-    @Query(requestHandler = "/selectAddress", value = "*?0*")
-    Page<AddressInfo> getAddressInfo(String str, Pageable pageable);
-    
-    @Query(requestHandler = "/selectAddress", value = "?0*")
-    Page<AddressInfo> getAddressInfo1(String str, Pageable pageable);
+	@Query(requestHandler = "/selectAddress", value = "*?0*")
+	Page<AddressInfo> getAddressInfo(String str, Pageable pageable);
+
+	@Query(requestHandler = "/selectAddress", value = "?0*")
+	Page<AddressInfo> getAddressInfo1(String str, Pageable pageable);
 
 }

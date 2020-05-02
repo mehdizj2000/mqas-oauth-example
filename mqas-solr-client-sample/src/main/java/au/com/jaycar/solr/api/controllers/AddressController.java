@@ -17,48 +17,48 @@ import au.com.jaycar.solr.repos.AddressInfoRepo;
 @RestController
 public class AddressController {
 
-    private AddressInfoRepo addressInfoRepo;
-    
-    private Pageable pageable;
-    
-    @GetMapping("/api/getAddress/{terms}")
-    public List<AddressInfo> findAddress(@PathVariable(name = "terms")  String... terms) {
-	
-	Stream<String> queryStream = Stream.of(terms);
-	
-	String queryText = queryStream.map(s -> s.concat("*")).collect(Collectors.joining(" "));
-	
-	Page<AddressInfo> page = addressInfoRepo.getAddressInfo(queryText, getPageable());
-	
-	return page.toList();
-	
-    }
-    
-    @GetMapping("/api/getAddress1/{query}")
-    public List<AddressInfo> findAddress1(@PathVariable(name = "query")  String queryText) {
-	
-	Page<AddressInfo> page = addressInfoRepo.getAddressInfo1(queryText, getPageable());
-	
-	return page.toList();
-	
-    }
+	private AddressInfoRepo addressInfoRepo;
 
-    public AddressInfoRepo getAddressInfoRepo() {
-	return addressInfoRepo;
-    }
+	private Pageable pageable;
 
-    @Autowired
-    public void setAddressInfoRepo(AddressInfoRepo addressInfoRepo) {
-	this.addressInfoRepo = addressInfoRepo;
-    }
+	@GetMapping("/api/getAddress/{terms}")
+	public List<AddressInfo> findAddress(@PathVariable(name = "terms") String... terms) {
 
-    public Pageable getPageable() {
-	return pageable;
-    }
+		Stream<String> queryStream = Stream.of(terms);
 
-    @Autowired
-    public void setPageable(Pageable pageable) {
-	this.pageable = pageable;
-    }
-    
+		String queryText = queryStream.map(s -> s.concat("*")).collect(Collectors.joining(" "));
+
+		Page<AddressInfo> page = addressInfoRepo.getAddressInfo(queryText, getPageable());
+
+		return page.toList();
+
+	}
+
+	@GetMapping("/api/getAddress1/{query}")
+	public List<AddressInfo> findAddress1(@PathVariable(name = "query") String queryText) {
+
+		Page<AddressInfo> page = addressInfoRepo.getAddressInfo1(queryText, getPageable());
+
+		return page.toList();
+
+	}
+
+	public AddressInfoRepo getAddressInfoRepo() {
+		return addressInfoRepo;
+	}
+
+	@Autowired
+	public void setAddressInfoRepo(AddressInfoRepo addressInfoRepo) {
+		this.addressInfoRepo = addressInfoRepo;
+	}
+
+	public Pageable getPageable() {
+		return pageable;
+	}
+
+	@Autowired
+	public void setPageable(Pageable pageable) {
+		this.pageable = pageable;
+	}
+
 }

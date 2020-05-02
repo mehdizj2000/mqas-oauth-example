@@ -19,8 +19,8 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @EnableResourceServer
 public class MqasResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
+	@Override
+	public void configure(HttpSecurity http) throws Exception {
 	// @formatter:off
  	http
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) 	
@@ -32,16 +32,15 @@ public class MqasResourceServerConfig extends ResourceServerConfigurerAdapter {
  	;
  	// @formatter:on
 
-    }
+	}
 
-    @Bean
-    public ResourceServerTokenServices tokenServices() {
-	RemoteTokenServices tokenServices = new RemoteTokenServices();
-	tokenServices.setClientId("mehdi-dc");
-	tokenServices.setClientSecret("123456");
-	tokenServices.setCheckTokenEndpointUrl("http://127.0.0.1:8369/authorization/oauth/check_token");
-	return tokenServices;
-    }
-
+	@Bean
+	public ResourceServerTokenServices tokenServices() {
+		RemoteTokenServices tokenServices = new RemoteTokenServices();
+		tokenServices.setClientId("mehdi-dc");
+		tokenServices.setClientSecret("123456");
+		tokenServices.setCheckTokenEndpointUrl("http://127.0.0.1:8369/authorization/oauth/check_token");
+		return tokenServices;
+	}
 
 }

@@ -16,8 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class MqasSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    public void globalConfig(AuthenticationManagerBuilder auth) throws Exception {
+	@Autowired
+	public void globalConfig(AuthenticationManagerBuilder auth) throws Exception {
 	// @formatter:off
  	auth
  		.inMemoryAuthentication()
@@ -26,9 +26,9 @@ public class MqasSecurityConfig extends WebSecurityConfigurerAdapter {
  		.roles("USER")
  	;
 	// @formatter:on
-    }
+	}
 
-    /*    @Override
+	/*    @Override
     public void configure(HttpSecurity http) throws Exception {
 	// @formatter:off
 	http
@@ -45,8 +45,8 @@ public class MqasSecurityConfig extends WebSecurityConfigurerAdapter {
 	// @formatter:on
     }*/
 
-    @Override
-    protected void configure(final HttpSecurity http) throws Exception { // @formatter:off
+	@Override
+	protected void configure(final HttpSecurity http) throws Exception { // @formatter:off
         http.authorizeRequests()
             .anyRequest().authenticated()
             .and().formLogin().permitAll()
@@ -54,15 +54,15 @@ public class MqasSecurityConfig extends WebSecurityConfigurerAdapter {
             ;
     } // @formatter:on
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-	return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-	return super.authenticationManagerBean();
-    }
+	@Override
+	@Bean
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
 }

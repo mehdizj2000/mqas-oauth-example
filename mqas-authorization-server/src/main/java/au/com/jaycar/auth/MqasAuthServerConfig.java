@@ -14,15 +14,13 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 @Configuration
 @EnableAuthorizationServer
 public class MqasAuthServerConfig extends AuthorizationServerConfigurerAdapter {
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -40,49 +38,22 @@ public class MqasAuthServerConfig extends AuthorizationServerConfigurerAdapter {
 		.inMemory()
 		.withClient("mehdi-dc")
 		.secret(passwordEncoder.encode("123456"))
-		.authorizedGrantTypes("authorization_code", "refresh_token")
+		.authorizedGrantTypes("client_credentials")
 		.scopes("read", "write")
 		.accessTokenValiditySeconds(3600)
-		.refreshTokenValiditySeconds(3600 * 24)
-		.redirectUris("http://localhost:5859/client/proxy/addressInfo")
+
 	;
 	// @formatter:on
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-
-	// @formatter:off
- 	endpoints
- 		.tokenStore(tokenStore())
- 		.authenticationManager(authenticationManager)
- 		.allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST)
- 		.accessTokenConverter(accessTokenConverter())
- 	;
-	// @formatter:on
-    }
-
-    @Bean
-    @Primary
-    public DefaultTokenServices DefaultTokenServices() {
-	DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-	defaultTokenServices.setTokenStore(tokenStore());
-	defaultTokenServices.setSupportRefreshToken(true);
-	return defaultTokenServices;
+ 	endpoints.tokenStore(tokenStore());
     }
 
     @Bean
     public TokenStore tokenStore() {
-	return new JwtTokenStore(accessTokenConverter());
-    }
-
-    @Bean
-    public JwtAccessTokenConverter accessTokenConverter() {
-	JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-	jwtAccessTokenConverter.setSigningKey(
-		"sdfgdsfgdkugws3ry94r8934r98437ru932um987m3hd19mjsdhfjsdhf82iube87b2387heyh87hy98edsyh8977y8edf8w7dbc8s7fc7shgcviushbdvjysgdysdfuygsdfuiygsdfygsudft786sdf8usygbdfiuygdfuytbcisriuseis7us76dft68");
-
-	return jwtAccessTokenConverter;
+	return new InMemoryTokenStore();
     }
 
 }
